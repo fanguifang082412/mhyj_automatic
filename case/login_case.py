@@ -10,22 +10,16 @@ from untils import DriverUntil
 import base
 
 
-
-
-def get_login_data():
-    with open("../data/login_data.json", encoding="utf-8") as f:
+def get_login_data(filename, function):
+    with open("../data/%s.json" % filename, encoding="utf-8") as f:
         list = []
-        data = json.load(f)
+        data = json.load(f)[function]
         for dict in data.values():
             list.append((dict.get("username"), dict.get("password"), dict.get("assert_text")))
 
         return list
 
 
-
-
-
-# init_logging_config()
 
 
 class Login(unittest.TestCase):
@@ -43,8 +37,8 @@ class Login(unittest.TestCase):
     def setUp(self) -> None:
         self.driver.get("http://47.102.168.233:8880/")
 
-    @parameterized.expand(get_login_data())
-    def test_login(self, username, password, assert_text):
+    @parameterized.expand(get_login_data("login_data", "login_error"))
+    def test_login_error(self, username, password, assert_text):
         time.sleep(3)
         self.login_business.login_bus(username, password)
         time.sleep(3)
@@ -61,6 +55,23 @@ class Login(unittest.TestCase):
             untils.assert_demo(self, assert_text, assert_ele.text)
             # self.assertEqual(assert_text, assert_ele.text)
 
+    @parameterized.expand(get_login_data("login_data", "login_success"))
+    def test_login_success(self, username, password, assert_text):
+        time.sleep(3)
+        self.login_business.login_bus(username, password)
+        time.sleep(3)
+        try:
+            assert_feature = By.XPATH, "/html/body/div/form/h4"
+            assert_ele = self.base_ele.get_element(assert_feature)
+
+        except Exception as e:
+            assert_feature = By.XPATH, "//strong[contains(@class,'font-bold')]"
+            assert_ele = self.base_ele.get_element(assert_feature)
+            untils.assert_demo(self, assert_text, assert_ele.text)
+            # self.assertEqual(assert_text, assert_ele.text)
+        else:
+            untils.assert_demo(self, assert_text, assert_ele.text)
+            # self.assertEqual(assert_text, assert_ele.text)
 
 
 if __name__ == "__main__":

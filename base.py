@@ -11,11 +11,3 @@ class Base:
 
 
 
-# def get_element1(ele_feature):
-#     try:
-#         ele = WebDriverWait(DriverUntil.get_driver(), 5, 1).until(lambda x: x.find_element(*ele_feature))
-#
-#     except Exception as e:
-#         return None
-#     else:
-#         return ele
