@@ -11,7 +11,7 @@ def init_logging_config():
     hanlder1.setFormatter(formater)
     loggger.addHandler(hanlder1)
 
-    file_path = "../log/mhyj.log"
+    file_path = "./log/mhyj.log"
     hanlder2 = logging.handlers.TimedRotatingFileHandler(file_path, when="MIDNIGHT", interval=1, backupCount=3)
     hanlder2.setFormatter(formater)
     loggger.addHandler(hanlder2)

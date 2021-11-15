@@ -1,16 +1,16 @@
 from selenium.webdriver.common.by import By
-from base import Base
+
+from base import HandleElement
 from untils import DriverUntil
 
 
 
 
-class LoginPage(Base):
+class LoginPage(HandleElement):
 
-    def __init__(self):
-        self.username = By.XPATH, "//form[@class='m-t']/div/input[@placeholder='用户名']"
-        self.password = By.XPATH, "//form[@class='m-t']/div/input[@placeholder='密码']"
-        self.login = By.XPATH, "//button[@type='submit']"
+    username = By.XPATH, "//form[@class='m-t']/div/input[@placeholder='用户名']"
+    password = By.XPATH, "//form[@class='m-t']/div/input[@placeholder='密码']"
+    login = By.XPATH, "//button[@type='submit']"
 
     def get_username(self):
         return self.get_element(self.username)
@@ -22,24 +22,22 @@ class LoginPage(Base):
         return self.get_element(self.login)
 
 
-class LoginAction:
-    def __init__(self):
-        self.login_page = LoginPage()
+class LoginAction(LoginPage):
 
     def input_username(self, username):
-        self.login_page.get_username().send_keys(username)
+        self.get_username().send_keys(username)
 
     def input_password(self, password):
-        self.login_page.get_password().send_keys(password)
+        self.get_password().send_keys(password)
 
     def click_login(self):
-        self.login_page.get_login().click()
+        self.get_login().click()
 
 
 
 class LoginBusiness:
-    def __init__(self):
-        self.login_action = LoginAction()
+    def __init__(self, driver):
+        self.login_action = LoginAction(driver)
 
     def login_bus(self, username, password):
         self.login_action.input_username(username)

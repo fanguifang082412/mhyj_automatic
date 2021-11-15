@@ -4,10 +4,13 @@ from untils import DriverUntil
 
 
 
-class Base:
+class HandleElement:
+    def __init__(self, driver):
+        self.driver = driver
     def get_element(self, ele_feature):
-        ele = WebDriverWait(DriverUntil.get_driver(), 15, 1).until(lambda x: x.find_element(*ele_feature))
+        ele = WebDriverWait(self.driver, 10, 0.5).until(lambda x: x.find_element(*ele_feature))
         return ele
+
 
 
 
