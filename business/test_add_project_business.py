@@ -1,7 +1,6 @@
 import time
 import pytest
 from selenium.webdriver import ActionChains
-
 from handle.add_project_handle import HandleProject
 from page.add_project_page import AddProjectPage
 from page.login_page import LoginBusiness
@@ -20,6 +19,7 @@ class TestAddProject:
         self.driver.get("http://47.102.168.233:8880/")
         self.login_business.login_bus("admin", "123456")
 
+    @pytest.mark.skip()
     def test_add_project(self):
         time.sleep(2)
         self.handle_project.tap_get_volunteer_service()

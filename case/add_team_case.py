@@ -36,8 +36,8 @@ class AddTeamCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.driver = DriverUntil.get_driver()
-        cls.add_team_business = AddTeamBusiness()
-        cls.login_business = LoginBusiness()
+        cls.add_team_business = AddTeamBusiness(cls.driver)
+        cls.login_business = LoginBusiness(cls.driver)
         cls.driver.get("http://47.102.168.233:8880/")
         cls.login_business.login_bus("admin", "123456")
 
@@ -48,16 +48,18 @@ class AddTeamCase(unittest.TestCase):
     def setUp(self) -> None:
         self.driver.get("http://47.102.168.233:8880/")
 
-    @parameterized.expand(get_add_team_data("add_team_data", "add_team_error"))
-    def test_add_team_error(self, team_name, team_name_all, image_url, team_builder, team_yunying, team_office, team_connecter, team_phone, team_introduce, assert_info):
-        self.add_team_business.add_team(team_name, team_name_all, image_url, team_builder, team_yunying, team_office, team_connecter, team_phone, team_introduce)
-        try:
-            assert_ele = WebDriverWait(self.driver, 5, 1).until(lambda x: x.find_element(By.XPATH, "/html/body/div[7]/p"))
-        except Exception as e:
-            assert_ele = WebDriverWait(self.driver, 5, 1).until(lambda x: x.find_element(By.XPATH, '//*[@id="app"]/div[3]/div/div[1]/span'))
-            self.assertEqual(assert_info, assert_ele.text)
-        else:
-            self.assertEqual(assert_info, assert_ele.text)
+
+
+    # @parameterized.expand(get_add_team_data("add_team_data", "add_team_error"))
+    # def test_add_team_error(self, team_name, team_name_all, image_url, team_builder, team_yunying, team_office, team_connecter, team_phone, team_introduce, assert_info):
+    #     self.add_team_business.add_team(team_name, team_name_all, image_url, team_builder, team_yunying, team_office, team_connecter, team_phone, team_introduce)
+    #     try:
+    #         assert_ele = WebDriverWait(self.driver, 5, 1).until(lambda x: x.find_element(By.XPATH, "/html/body/div[7]/p"))
+    #     except Exception as e:
+    #         assert_ele = WebDriverWait(self.driver, 5, 1).until(lambda x: x.find_element(By.XPATH, '//*[@id="app"]/div[3]/div/div[1]/span'))
+    #         self.assertEqual(assert_info, assert_ele.text)
+    #     else:
+    #         self.assertEqual(assert_info, assert_ele.text)
 
     @parameterized.expand(get_add_team_data("add_team_data", "add_team_success"))
     def test_add_team_success(self, team_name, team_name_all, image_url, team_builder, team_yunying, team_office, team_connecter, team_phone, team_introduce, assert_info):

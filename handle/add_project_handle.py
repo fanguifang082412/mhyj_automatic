@@ -6,7 +6,7 @@ from untils import DriverUntil
 
 
 class HandleProject(AddProjectPage):
-    @allure.step("点击志愿者服务")
+    # @allure.step("点击志愿者服务")
     def tap_get_volunteer_service(self):
         self.get_volunteer_service_ele().click()
 

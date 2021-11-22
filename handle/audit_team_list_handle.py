@@ -1,5 +1,6 @@
 from page.audit_team_list_page import AuditTeamList
 
+
 class AuditTeamListHandle(AuditTeamList):
 
     def tap_view(self):

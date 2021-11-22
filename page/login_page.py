@@ -1,3 +1,4 @@
+import pytest
 from selenium.webdriver.common.by import By
 
 from base import HandleElement
@@ -38,6 +39,7 @@ class LoginAction(LoginPage):
 class LoginBusiness:
     def __init__(self, driver):
         self.login_action = LoginAction(driver)
+
 
     def login_bus(self, username, password):
         self.login_action.input_username(username)

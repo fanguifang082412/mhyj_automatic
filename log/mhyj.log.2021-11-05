@@ -1,5 +1,0 @@
-2021-11-05 14:37:59,541|selenium.webdriver.remote.remote_connection: DEBUG    POST http://127.0.0.1:55476/session {"capabilities": {"firstMatch": [{}], "alwaysMatch": {"browserName": "chrome", "platformName": "any", "goog:chromeOptions": {"extensions": [], "args": []}}}, "desiredCapabilities": {"browserName": "chrome", "version": "", "platform": "ANY", "goog:chromeOptions": {"extensions": [], "args": []}}}
-2021-11-05 14:37:59,544|urllib3.connectionpool: DEBUG    Starting new HTTP connection (1): 127.0.0.1:55476
-2021-11-05 14:38:02,066|urllib3.connectionpool: DEBUG    http://127.0.0.1:55476 "POST /session HTTP/1.1" 200 834
-2021-11-05 14:38:02,067|selenium.webdriver.remote.remote_connection: DEBUG    Finished Request
-2021-11-05 14:38:02,067|selenium.webdriver.remote.remote_connection: DEBUG    POST http://127.0.0.1:55476/session/f2c89eebdc76a6b394d1a4225bd5ca41/window/current/maximize {"windowHandle": "current", "sessionId": "f2c89eebdc76a6b394d1a4225bd5ca41"}

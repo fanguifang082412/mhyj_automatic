@@ -13,3 +13,6 @@ class HomeHandle(HomePage):
 
     def tap_audit_team(self):
         self.get_audit_team_ele().click()
+
+    def tap_audit_project(self):
+        self.get_audit_project_ele().click()
